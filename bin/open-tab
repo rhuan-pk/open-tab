@@ -52,3 +52,5 @@ URL=$(${ZENITY_LIST})
 google-chrome-stable ${URL}/painel
 python3 ${PATH_STAGE}
 google-chrome-stable ${URL}
+
+# awk '/<a href="\/app\/editar\/cd=/' index.html | cut -d '>' -f 2 | sed '/Loja/d' | sed 's/<\/a//g'
