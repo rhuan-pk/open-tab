@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+FLAG_INSTALL=1
+FLAG_KEYBINDING=1
+
+if [ ${FLAG_INSTALL} -eq 0 ]; then
+	sudo apt install python3-pip python3-xlib python3-tk python3-dev scrot -y
+	pip3 install pyautogui
+	python3 -m pip install pyautogui
+fi
+
+if [ ${FLAG_KEYBINDING} -eq 0 ]; then
+	echo "hello world"
+fi
+
+# ----------------------------------------------------------------------------------------------------------------------------------------
+
+PATH_STAGE="/home/rhuan/scripts/stage.py"
+PATH_VERSION_LIST="/home/rhuan/scripts/version.list"
+
+NOME_CLIENTE=$(zenity --title='Telecursos 2000' --width='350' --height='125' --entry --text='Entre com o nome do cliente para pesquisa:')
+[ ${?} -ne 0 ] && exit 1
+INDEX=0
+
+for i in $(grep "${NOME_CLIENTE}" ${PATH_VERSION_LIST}); do
+	URLS_CLIENTE[${INDEX}]="${i}"
+	let ++INDEX
+done
+
+ZENITY_LIST='zenity --width='560' --height='340' --list --column=URLs'
+for ((i=0;i<${INDEX};++i)); do
+	ZENITY_LIST="${ZENITY_LIST} "
+	ZENITY_LIST="${ZENITY_LIST}${URLS_CLIENTE[${i}]}"
+done
+
+URL=$(${ZENITY_LIST})
+[ ${?} -ne 0 ] && exit 1
+
+google-chrome-stable ${URL}/painel
+python3 ${PATH_STAGE}
+google-chrome-stable ${URL}
