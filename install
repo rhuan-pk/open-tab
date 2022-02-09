@@ -11,4 +11,4 @@ sudo cp ${INSTALL_PATH}/open-tab/lib/* /usr/local/lib/open-tab >> ${INSTALL_LOG_
 sudo cp ${INSTALL_PATH}/open-tab/etc/* /usr/local/etc/open-tab >> ${INSTALL_LOG_FILE_PATH}
 cd /tmp
 echo "\n--- REMOVENDO ---\n" >> ${INSTALL_LOG_FILE_PATH}
-rm -rfv ${INSTALL_PATH}
+rm -rfv ${INSTALL_PATH} >> ${INSTALL_LOG_FILE_PATH}
