@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 INSTALL_PATH="/tmp/OPEN-TAB"
-INSTALL_LOG_FILE_PATH="/tmp/.open-tab_install_log_file,log"
+INSTALL_LOG_FILE_PATH="/tmp/open-tab_install_log_file.log"
 mkdir -v ${INSTALL_PATH} > ${INSTALL_LOG_FILE_PATH}
 cd ${INSTALL_PATH}
 git clone "https://github.com/rhuan-pk/open-tab.git" >> ${INSTALL_LOG_FILE_PATH}
