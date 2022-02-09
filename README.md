@@ -4,7 +4,7 @@
 ```bash
 wget -qO - "https://raw.githubusercontent.com/rhuan-pk/open-tab/master/install" | bash -
 ```
-1. Chame pelo programa uma vez no terminal:
+2. Rode o programa uma vez no terminal:
 ```bash
 open-tab
 ```
