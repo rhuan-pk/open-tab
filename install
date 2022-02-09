@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+INSTALL_PATH="/tmp/OPEN-TAB"
+INSTALL_LOG_FILE_PATH="/tmp/.open-tab_install_log_file,log"
+mkdir -v ${INSTALL_PATH} > ${INSTALL_LOG_FILE_PATH}
+cd ${INSTALL_PATH}
+git clone "https://github.com/rhuan-pk/open-tab.git" >> ${INSTALL_LOG_FILE_PATH}
+sudo mkdir -pv /usr/local/lib/open-tab >> ${INSTALL_LOG_FILE_PATH}
+sudo mkdir -pv /usr/local/etc/open-tab >> ${INSTALL_LOG_FILE_PATH}
+sudo cp ${INSTALL_PATH}/open-tab/bin/* /usr/local/bin >> ${INSTALL_LOG_FILE_PATH}
+sudo cp ${INSTALL_PATH}/open-tab/lib/* /usr/local/lib/open-tab >> ${INSTALL_LOG_FILE_PATH}
+sudo cp ${INSTALL_PATH}/open-tab/etc/* /usr/local/etc/open-tab >> ${INSTALL_LOG_FILE_PATH}
+cd /tmp
+echo "\n--- REMOVENDO ---\n" >> ${INSTALL_LOG_FILE_PATH}
+rm -rfv ${INSTALL_PATH}

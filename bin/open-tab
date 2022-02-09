@@ -1,27 +1,40 @@
 #!/usr/bin/env bash
 
+FLAG_MAIN=1
 FLAG_INSTALL=1
 FLAG_KEYBINDING=1
 
 if [ ${FLAG_INSTALL} -eq 0 ]; then
+	echo "Instalando bibliotecas..."
 	sudo apt install python3-pip python3-xlib python3-tk python3-dev scrot -y
 	pip3 install pyautogui
 	python3 -m pip install pyautogui
+	echo "Pronto."
 fi
 
 if [ ${FLAG_KEYBINDING} -eq 0 ]; then
-	echo "hello world"
+	gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0opentab/']"
+	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0opentab/ name 'Open Tab'
+	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0opentab/ binding '<Control><Alt>o'
+	gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0opentab/ command '/usr/local/bin/open-tab'
+fi
+
+if [ ${FLAG_MAIN} -eq 0 ]; then
+	for ((i=3;i<6;++i)); do
+		sed i "${i}s/0$/1/" $(basename ${0})
+	done
+	exit 0
 fi
 
 # ----------------------------------------------------------------------------------------------------------------------------------------
 
-PATH_STAGE="/home/rhuan/scripts/stage.py"
-PATH_VERSION_LIST="/home/rhuan/scripts/version.list"
+PATH_STAGE="/usr/local/lib/open-tab/stage.py"
+PATH_VERSION_LIST="/usr/local/etc/open-tab/version.list"
 
 NOME_CLIENTE=$(zenity --title='Telecursos 2000' --width='350' --height='125' --entry --text='Entre com o nome do cliente para pesquisa:')
 [ ${?} -ne 0 ] && exit 1
-INDEX=0
 
+INDEX=0
 for i in $(grep "${NOME_CLIENTE}" ${PATH_VERSION_LIST}); do
 	URLS_CLIENTE[${INDEX}]="${i}"
 	let ++INDEX
