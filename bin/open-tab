@@ -35,7 +35,7 @@ NOME_CLIENTE=$(zenity --title='Telecursos 2000' --width='350' --height='125' --e
 [ ${?} -ne 0 ] && exit 1
 
 INDEX=0
-for i in $(grep "${NOME_CLIENTE}" ${PATH_VERSION_LIST}); do
+for i in $(grep -i "${NOME_CLIENTE}" ${PATH_VERSION_LIST}); do
 	URLS_CLIENTE[${INDEX}]="${i}"
 	let ++INDEX
 done
