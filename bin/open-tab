@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-FLAG_MAIN=1
-FLAG_INSTALL=1
-FLAG_KEYBINDING=1
+FLAG_MAIN=0
+FLAG_INSTALL=0
+FLAG_KEYBINDING=0
 
 if [ ${FLAG_INSTALL} -eq 0 ]; then
 	echo "Instalando bibliotecas..."

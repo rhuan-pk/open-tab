@@ -12,4 +12,3 @@ sudo cp -v ${INSTALL_PATH}/open-tab/etc/* /usr/local/etc/open-tab >> ${INSTALL_L
 cd /tmp
 echo "\n--- REMOVENDO ---\n" >> ${INSTALL_LOG_FILE_PATH}
 rm -rfv ${INSTALL_PATH} >> ${INSTALL_LOG_FILE_PATH}
-rm $(basename ${0})
