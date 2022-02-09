@@ -21,7 +21,7 @@ fi
 
 if [ ${FLAG_MAIN} -eq 0 ]; then
 	for ((i=3;i<6;++i)); do
-		sed -i "${i}s/0$/1/" $(pwd)/$(basename ${0})
+		sed -i "${i}s/0$/1/" /usr/local/bin/$(basename ${0})
 	done
 	exit 0
 fi
