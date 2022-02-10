@@ -28,6 +28,8 @@ fi
 
 # ----------------------------------------------------------------------------------------------------------------------------------------
 
+readonly version=0.0.1
+
 PATH_STAGE="/usr/local/lib/open-tab/stage.py"
 PATH_VERSION_LIST="/usr/local/etc/open-tab/version.list"
 
@@ -47,7 +49,7 @@ for ((i=0;i<${INDEX};++i)); do
 done
 
 URL=$(${ZENITY_LIST})
-[ ${?} -ne 0 ] && exit 1
+[ ${?} -ne 0 -o "${URL}" = "" ] && exit 1
 
 google-chrome-stable ${URL}/painel
 python3 ${PATH_STAGE}
